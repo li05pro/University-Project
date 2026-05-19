@@ -1,0 +1,167 @@
+:root {
+				--primary-color: #ffc107;
+				--dark-color: #333;
+				--light-color: #f8f9fa;
+			}
+
+			/* Logo样式 */
+			.logo-container {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				flex-direction: column;
+				margin: 10px 0;
+			}
+
+			.logo-box {
+				width: 60px;
+				height: 40px;
+				background-color: var(--primary-color);
+				border-radius: 8px;
+				position: relative;
+				margin-bottom: 5px;
+			}
+
+			.logo-handle {
+				width: 30px;
+				height: 12px;
+				border: 3px solid var(--primary-color);
+				border-top: none;
+				border-radius: 0 0 15px 15px;
+				position: absolute;
+				top: -10px;
+				left: 15px;
+			}
+
+			.logo-text {
+				font-family: 'SimHei', 'Microsoft YaHei', sans-serif;
+				font-weight: bold;
+				color: var(--dark-color);
+				font-size: 1.5rem;
+				letter-spacing: 2px;
+			}
+
+			/* 页面内容样式 */
+			.page-section {
+				display: none;
+				padding: 20px 0;
+			}
+
+			.page-section.active {
+				display: block;
+			}
+			/* 首页轮播图 */
+			.carousel-item img {
+				height: 400px;
+				object-fit: cover;
+			}
+			/* 限时秒杀 */
+			.countdown {
+				background-color: #dc3545;
+				color: white;
+				padding: 5px 10px;
+				border-radius: 5px;
+				font-weight: bold;
+			}
+			.seckill-item {
+				border: 1px solid #ddd;
+				border-radius: 5px;
+				padding: 10px;
+				text-align: center;
+				transition: transform 0.3s;
+			}
+			.seckill-item:hover {
+				transform: translateY(-5px);
+				box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+			}
+			.seckill-price {
+				color: #dc3545;
+				font-weight: bold;
+				font-size: 1.2rem;
+			}
+			/* 详情页放大镜效果 */
+			.product-image-container {
+				position: relative;
+				overflow: hidden;
+				cursor: zoom-in;
+			}
+			.product-image {
+				width: 100%;
+				transition: transform 0.3s;
+			}
+			.zoom-lens {
+				position: absolute;
+				border: 1px solid #ddd;
+				background-color: rgba(255, 255, 255, 0.5);
+				display: none;
+			}
+			.zoom-result {
+				position: absolute;
+				top: 0;
+				left: 100%;
+				width: 400px;
+				height: 400px;
+				overflow: hidden;
+				display: none;
+				border: 1px solid #ddd;
+				background-color: white;
+				z-index: 1000;
+			}
+			/* 购物车样式 */
+			.cart-item {
+				border-bottom: 1px solid #eee;
+				padding: 15px 0;
+			}
+
+			.cart-total {
+				background-color: var(--light-color);
+				padding: 15px;
+				border-radius: 5px;
+			}
+
+			/* 表单样式 */
+			.form-container {
+				max-width: 500px;
+				margin: 0 auto;
+				padding: 20px;
+				border: 1px solid #ddd;
+				border-radius: 10px;
+				background-color: white;
+			}
+
+			/* 页脚 */
+			.footer {
+				background-color: var(--dark-color);
+				color: white;
+				padding: 30px 0;
+				margin-top: 30px;
+			}
+
+			/* 响应式调整 */
+			@media (max-width: 768px) {
+				.carousel-item img {
+					height: 250px;
+				}
+
+				.logo-container {
+					margin: 5px 0;
+				}
+			}
+
+			.imgg {
+				position: absolute;
+				left: 70px;
+				top: 1px;
+
+				height: 75px;
+				width: 70px;
+			}
+
+			.imggg {
+				position: absolute;
+				left: 20px;
+				top: -3px;
+
+				height: 75px;
+				width: 70px;
+			}
