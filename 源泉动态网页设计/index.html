@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>源泉 - 知识分享与交流平台</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <span>源泉</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="active">首页</a></li>
+                <li><a href="articles.html">资讯中心</a></li>
+                <li><a href="circles.html">交流圈</a></li>
+                <li><a href="about.html">关于我们</a></li>
+            </ul>
+            <div class="nav-right">
+                <div class="search-box">
+                    <input type="text" placeholder="搜索资讯...">
+                    <button type="button">🔍</button>
+                </div>
+                <div class="user-menu">
+                    <a href="login.html" class="btn btn-outline btn-sm">登录</a>
+                    <a href="register.html" class="btn btn-primary btn-sm">注册</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主要内容区 -->
+    <main class="main-content">
+        <div class="container">
+            <!-- 轮播区域 -->
+            <section class="hero-section" style="background: linear-gradient(135deg, #1abc9c 0%, #16a085 100%); border-radius: 12px; padding: 60px 40px; margin: 30px 0; color: white; text-align: center;">
+                <h1 style="font-size: 36px; margin-bottom: 20px;">欢迎来到源泉</h1>
+                <p style="font-size: 18px; margin-bottom: 30px; opacity: 0.9;">知识分享与交流的开放平台，汇聚智慧，共创未来</p>
+                <div style="display: flex; gap: 15px; justify-content: center;" id="heroButtons">
+                    <a href="articles.html" class="btn btn-lg" style="background: white; color: #1abc9c;">浏览资讯</a>
+                    <a href="register.html" class="btn btn-outline btn-lg" style="border-color: white; color: white;" id="joinBtn">立即加入</a>
+                </div>
+            </section>
+
+            <div class="row">
+                <!-- 左侧内容区 -->
+                <div class="col-8 col-md-12">
+                    <!-- 分类区域 -->
+                    <section class="section" style="margin-bottom: 40px;">
+                        <h2 style="font-size: 20px; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid #1abc9c;">热门分类</h2>
+                        <div class="category-list">
+                            <a href="articles.html?category=1" class="category-tag">技术教程</a>
+                            <a href="articles.html?category=2" class="category-tag">经验分享</a>
+                            <a href="articles.html?category=3" class="category-tag">行业动态</a>
+                            <a href="articles.html?category=4" class="category-tag">生活随笔</a>
+                            <a href="articles.html?category=5" class="category-tag">前端开发</a>
+                            <a href="articles.html?category=6" class="category-tag">后端开发</a>
+                            <a href="articles.html?category=7" class="category-tag">数据库</a>
+                            <a href="articles.html" class="category-tag" style="background: #1abc9c; color: white;">全部分类 →</a>
+                        </div>
+                    </section>
+
+                    <!-- 最新资讯 -->
+                    <section class="section" style="margin-bottom: 40px;">
+                        <h2 style="font-size: 20px; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid #1abc9c;">最新资讯</h2>
+                        
+                        <div id="latestArticles">
+                            <div class="loading-text" style="text-align: center; padding: 40px; color: #7f8c8d;">加载中...</div>
+                        </div>
+
+                        <div style="text-align: center; margin-top: 30px;">
+                            <a href="articles.html" class="btn btn-outline">查看更多资讯</a>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- 右侧边栏 -->
+                <div class="col-4 col-md-12">
+                    <!-- 热门资讯 -->
+                    <div class="sidebar">
+                        <h3 class="sidebar-title">热门资讯</h3>
+                        <ul style="list-style: none;">
+                            <li style="padding: 12px 0; border-bottom: 1px solid #e1e8ed;">
+                                <a href="article-detail.html" style="color: #2c3e50; display: block;">
+                                    <span style="color: #e74c3c; font-weight: bold; margin-right: 8px;">1</span>
+                                    Vue.js 3.0 新特性详解
+                                </a>
+                                <span style="font-size: 12px; color: #7f8c8d;">👁 5,678</span>
+                            </li>
+                            <li style="padding: 12px 0; border-bottom: 1px solid #e1e8ed;">
+                                <a href="article-detail.html" style="color: #2c3e50; display: block;">
+                                    <span style="color: #f39c12; font-weight: bold; margin-right: 8px;">2</span>
+                                    PHP 8.0 新功能介绍
+                                </a>
+                                <span style="font-size: 12px; color: #7f8c8d;">👁 4,321</span>
+                            </li>
+                            <li style="padding: 12px 0; border-bottom: 1px solid #e1e8ed;">
+                                <a href="article-detail.html" style="color: #2c3e50; display: block;">
+                                    <span style="color: #27ae60; font-weight: bold; margin-right: 8px;">3</span>
+                                    微服务架构设计实践
+                                </a>
+                                <span style="font-size: 12px; color: #7f8c8d;">👁 3,890</span>
+                            </li>
+                            <li style="padding: 12px 0;">
+                                <a href="article-detail.html" style="color: #2c3e50; display: block;">
+                                    <span style="color: #95a5a6; font-weight: bold; margin-right: 8px;">4</span>
+                                    Docker容器化部署指南
+                                </a>
+                                <span style="font-size: 12px; color: #7f8c8d;">👁 3,245</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- 活跃用户 -->
+                    <div class="sidebar">
+                        <h3 class="sidebar-title">活跃用户</h3>
+                        <div style="display: flex; flex-wrap: wrap; gap: 15px;">
+                            <div style="text-align: center;">
+                                <img src="img/avatar-small-1.jpg" alt="用户头像" style="width: 60px; height: 60px; border-radius: 50%; object-fit: cover;">
+                                <p style="font-size: 12px; margin-top: 5px;">张三</p>
+                            </div>
+                            <div style="text-align: center;">
+                                <img src="img/avatar-small-2.jpg" alt="用户头像" style="width: 60px; height: 60px; border-radius: 50%; object-fit: cover;">
+                                <p style="font-size: 12px; margin-top: 5px;">李四</p>
+                            </div>
+                            <div style="text-align: center;">
+                                <img src="img/avatar-small-3.jpg" alt="用户头像" style="width: 60px; height: 60px; border-radius: 50%; object-fit: cover;">
+                                <p style="font-size: 12px; margin-top: 5px;">王五</p>
+                            </div>
+                            <div style="text-align: center;">
+                                <img src="img/avatar-small-4.jpg" alt="用户头像" style="width: 60px; height: 60px; border-radius: 50%; object-fit: cover;">
+                                <p style="font-size: 12px; margin-top: 5px;">赵六</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 热门交流圈 -->
+                    <div class="sidebar">
+                        <h3 class="sidebar-title">热门交流圈</h3>
+                        <ul style="list-style: none;">
+                            <li style="padding: 10px 0; border-bottom: 1px solid #e1e8ed;">
+                                <a href="circle-detail.html" style="color: #2c3e50; font-weight: 500;">前端技术交流</a>
+                                <p style="font-size: 12px; color: #7f8c8d; margin-top: 3px;">👥 1,234 成员</p>
+                            </li>
+                            <li style="padding: 10px 0; border-bottom: 1px solid #e1e8ed;">
+                                <a href="circle-detail.html" style="color: #2c3e50; font-weight: 500;">PHP开发者社区</a>
+                                <p style="font-size: 12px; color: #7f8c8d; margin-top: 3px;">👥 892 成员</p>
+                            </li>
+                            <li style="padding: 10px 0;">
+                                <a href="circle-detail.html" style="color: #2c3e50; font-weight: 500;">数据库优化讨论</a>
+                                <p style="font-size: 12px; color: #7f8c8d; margin-top: 3px;">👥 567 成员</p>
+                            </li>
+                        </ul>
+                        <div style="text-align: center; margin-top: 15px;">
+                            <a href="circles.html" class="btn btn-outline btn-sm">查看全部</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>关于源泉</h4>
+                    <a href="about.html">平台介绍</a>
+                    <a href="about.html">联系我们</a>
+                    <a href="about.html">加入我们</a>
+                </div>
+                <div class="footer-section">
+                    <h4>帮助中心</h4>
+                    <a href="help.html">使用指南</a>
+                    <a href="help.html">常见问题</a>
+                    <a href="help.html">意见反馈</a>
+                </div>
+                <div class="footer-section">
+                    <h4>友情链接</h4>
+                    <a href="#">技术源泉</a>
+                    <a href="#">开发者社区</a>
+                    <a href="#">开源项目</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 源泉 - 知识分享与交流平台. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 回到顶部按钮 -->
+    <button class="back-to-top">↑</button>
+
+    <script src="js/main.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+        // 检查登录成功提示
+        if (sessionStorage.getItem('login_success') === '1') {
+            const username = sessionStorage.getItem('username') || '用户';
+            showMessage('欢迎回来，' + username + '！登录成功', 'success', 5000);
+            sessionStorage.removeItem('login_success');
+            sessionStorage.removeItem('username');
+        }
+
+        // 加载最新资讯
+        async function loadLatestArticles() {
+            try {
+                const response = await fetch('php/article_api.php?action=latest&limit=5');
+                const result = await response.json();
+                
+                if (result.success && result.data.articles && result.data.articles.length > 0) {
+                    renderLatestArticles(result.data.articles);
+                } else {
+                    document.getElementById('latestArticles').innerHTML = `
+                        <div style="text-align: center; padding: 40px; color: #7f8c8d;">
+                            <p>暂无最新资讯</p>
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                console.error('加载最新资讯失败:', error);
+                document.getElementById('latestArticles').innerHTML = `
+                    <div style="text-align: center; padding: 40px; color: #7f8c8d;">
+                        <p>加载失败，请稍后重试</p>
+                    </div>
+                `;
+            }
+        }
+        
+        // 渲染最新资讯
+        function renderLatestArticles(articles) {
+            const container = document.getElementById('latestArticles');
+            
+            const html = articles.map(article => `
+                <div class="article-card">
+                    <img src="${article.cover_image || 'img/article-thumb.jpg'}" alt="${article.title}" class="article-cover">
+                    <div class="article-content">
+                        <a href="article-detail.html?id=${article.article_id}" class="article-title">${escapeHtml(article.title)}</a>
+                        <p class="article-summary">${article.summary ? escapeHtml(article.summary) : '暂无摘要'}</p>
+                        <div class="article-meta">
+                            <span class="category">${article.category_name || '未分类'}</span>
+                            <span>👤 <a href="author.html?id=${article.author_id}" style="color: inherit; text-decoration: none;">${article.author_name || '匿名'}</a></span>
+                            <span>📅 ${article.created_at}</span>
+                            <span>👁 ${article.view_count}</span>
+                            <span>💬 ${article.comment_count}</span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+            
+            container.innerHTML = html;
+        }
+        
+        // HTML转义
+        function escapeHtml(text) {
+            if (!text) return '';
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // 检查本地登录状态并显示欢迎消息
+        document.addEventListener('DOMContentLoaded', function() {
+            // 加载最新资讯
+            loadLatestArticles();
+
+            // 根据登录状态显示/隐藏"立即加入"按钮
+            const joinBtn = document.getElementById('joinBtn');
+            if (joinBtn) {
+                if (Auth.isLoggedIn()) {
+                    joinBtn.style.display = 'none';
+                } else {
+                    joinBtn.style.display = 'inline-block';
+                }
+            }
+
+            if (Auth.isLoggedIn()) {
+                const nickname = Auth.getNickname();
+                // 如果URL中有登录参数，显示欢迎消息
+                const urlParams = new URLSearchParams(window.location.search);
+                if (urlParams.get('from') === 'login') {
+                    showMessage('欢迎回来，' + nickname + '！', 'success', 3000);
+                    // 清除URL参数
+                    window.history.replaceState({}, document.title, window.location.pathname);
+                }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数据库初始化 - 源泉</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .init-container {
+            max-width: 600px;
+            margin: 100px auto;
+            padding: 40px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .init-container h1 {
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+        .init-container p {
+            color: #7f8c8d;
+            margin-bottom: 30px;
+        }
+        .init-btn {
+            padding: 15px 40px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .result-box {
+            margin-top: 30px;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: left;
+            display: none;
+        }
+        .result-box.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .result-box.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .result-box.loading {
+            background: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeaa7;
+            display: block;
+        }
+        .step-list {
+            text-align: left;
+            margin: 20px 0;
+            padding-left: 20px;
+        }
+        .step-list li {
+            margin: 10px 0;
+            color: #555;
+        }
+    </style>
+</head>
+<body style="background: #f5f7fa;">
+    <div class="init-container">
+        <h1>🗄️ 数据库初始化</h1>
+        <p>首次使用需要初始化数据库，请点击下方按钮完成初始化。</p>
+        
+        <div class="step-list">
+            <li>创建文章表 (article)</li>
+            <li>创建分类表 (category)</li>
+            <li>创建评论表 (comment)</li>
+            <li>插入默认分类数据</li>
+            <li>创建上传目录</li>
+        </div>
+        
+        <button class="btn btn-primary init-btn" onclick="initDatabase()">
+            开始初始化
+        </button>
+        
+        <div id="resultBox" class="result-box"></div>
+    </div>
+
+    <script>
+        async function initDatabase() {
+            const btn = document.querySelector('.init-btn');
+            const resultBox = document.getElementById('resultBox');
+            
+            btn.disabled = true;
+            btn.textContent = '初始化中...';
+            resultBox.className = 'result-box loading';
+            resultBox.innerHTML = '<p>⏳ 正在初始化数据库，请稍候...</p>';
+            
+            try {
+                const response = await fetch('php/init_db.php');
+                const result = await response.json();
+                
+                if (result.success) {
+                    resultBox.className = 'result-box success';
+                    resultBox.innerHTML = `
+                        <h3>✅ 初始化成功</h3>
+                        <p>${result.message}</p>
+                        <p>创建的表：${result.data.tables.join(', ')}</p>
+                        <br>
+                        <a href="articles.html" class="btn btn-primary">进入资讯中心</a>
+                        <a href="publish.html" class="btn btn-outline" style="margin-left: 10px;">发布文章</a>
+                    `;
+                } else {
+                    resultBox.className = 'result-box error';
+                    resultBox.innerHTML = `
+                        <h3>❌ 初始化失败</h3>
+                        <p>${result.message}</p>
+                    `;
+                }
+            } catch (error) {
+                resultBox.className = 'result-box error';
+                resultBox.innerHTML = `
+                    <h3>❌ 请求失败</h3>
+                    <p>网络错误或服务器异常：${error.message}</p>
+                `;
+            } finally {
+                btn.disabled = false;
+                btn.textContent = '重新初始化';
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>关于我们 - 源泉</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <span>源泉</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="articles.html">资讯中心</a></li>
+                <li><a href="circles.html">交流圈</a></li>
+                <li><a href="about.html" class="active">关于我们</a></li>
+            </ul>
+            <div class="nav-right">
+                <div class="search-box">
+                    <input type="text" placeholder="搜索资讯..." id="navSearchInput">
+                    <button type="button" onclick="handleNavSearch()">🔍</button>
+                </div>
+                <div class="user-menu" id="userMenu">
+                    <a href="login.html" class="btn btn-outline btn-sm">登录</a>
+                    <a href="register.html" class="btn btn-primary btn-sm">注册</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主要内容 -->
+    <main class="main-content" style="padding: 40px 0;">
+        <div class="container">
+            <div style="max-width: 900px; margin: 0 auto;">
+                <!-- 页面标题 -->
+                <div style="text-align: center; padding: 40px 0;">
+                    <h1 style="font-size: 42px; margin-bottom: 15px; color: #2c3e50;">关于源泉</h1>
+                    <p style="color: #7f8c8d; font-size: 18px;">知识分享与交流的开放平台，汇聚智慧，共创未来</p>
+                </div>
+
+                <!-- 平台介绍 -->
+                <div class="card" style="margin-bottom: 30px;">
+                    <div class="card-body" style="padding: 30px;">
+                        <h2 style="margin-bottom: 20px; color: #1abc9c; font-size: 24px;">🎯 平台介绍</h2>
+                        <p style="line-height: 1.8; margin-bottom: 15px; color: #555;">
+                            源泉是一个专注于知识分享与交流的开放平台，致力于为用户提供一个开放、友好、专业的网络环境。我们相信，知识的分享能够产生更大的价值，通过交流可以激发更多的创新思维。
+                        </p>
+                        <p style="line-height: 1.8; margin-bottom: 15px; color: #555;">
+                            在源泉，你可以分享自己的见解和经验，获取他人的知识和反馈，形成良性的知识循环。无论你是技术专家还是初学者，都能在这里找到属于自己的位置。
+                        </p>
+                        <p style="line-height: 1.8; color: #555;">
+                            平台支持文章发布、评论互动、好友社交、内容收藏等多种功能，让知识分享变得更加便捷和高效。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 我们的使命 -->
+                <div class="card" style="margin-bottom: 30px;">
+                    <div class="card-body" style="padding: 30px;">
+                        <h2 style="margin-bottom: 20px; color: #1abc9c; font-size: 24px;">🚀 我们的使命</h2>
+                        <p style="line-height: 1.8; margin-bottom: 15px; color: #555;">
+                            通过源泉为用户提供优质的交互平台，提升平台的知名度和用户活跃度，从而为平台获得更多的合作伙伴和商业机会，实现可持续发展。
+                        </p>
+                        <p style="line-height: 1.8; color: #555;">
+                            我们致力于打造一个高质量的知识社区，让每一位用户都能在这里有所收获，共同成长。让知识的源泉永不枯竭，让智慧的火花不断碰撞。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 核心功能 -->
+                <div class="card" style="margin-bottom: 30px;">
+                    <div class="card-body" style="padding: 30px;">
+                        <h2 style="margin-bottom: 25px; color: #1abc9c; font-size: 24px;">✨ 核心功能</h2>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px;">
+                            <div style="text-align: center; padding: 25px; background: #f8f9fa; border-radius: 12px; transition: transform 0.3s;">
+                                <div style="font-size: 48px; margin-bottom: 15px;">📝</div>
+                                <h3 style="margin-bottom: 10px; color: #2c3e50;">资讯发布</h3>
+                                <p style="font-size: 14px; color: #7f8c8d; line-height: 1.6;">发布技术文章、经验分享、行业动态，展示你的专业知识和见解</p>
+                            </div>
+                            <div style="text-align: center; padding: 25px; background: #f8f9fa; border-radius: 12px;">
+                                <div style="font-size: 48px; margin-bottom: 15px;">💬</div>
+                                <h3 style="margin-bottom: 10px; color: #2c3e50;">评论互动</h3>
+                                <p style="font-size: 14px; color: #7f8c8d; line-height: 1.6;">对感兴趣的文章发表评论，与作者和其他读者深入交流讨论</p>
+                            </div>
+                            <div style="text-align: center; padding: 25px; background: #f8f9fa; border-radius: 12px;">
+                                <div style="font-size: 48px; margin-bottom: 15px;">⭐</div>
+                                <h3 style="margin-bottom: 10px; color: #2c3e50;">内容收藏</h3>
+                                <p style="font-size: 14px; color: #7f8c8d; line-height: 1.6;">收藏喜欢的文章，建立个人知识库，方便随时查阅学习</p>
+                            </div>
+                            <div style="text-align: center; padding: 25px; background: #f8f9fa; border-radius: 12px;">
+                                <div style="font-size: 48px; margin-bottom: 15px;">👥</div>
+                                <h3 style="margin-bottom: 10px; color: #2c3e50;">好友社交</h3>
+                                <p style="font-size: 14px; color: #7f8c8d; line-height: 1.6;">添加志同道合的好友，建立知识分享圈子，拓展人脉资源</p>
+                            </div>
+                            <div style="text-align: center; padding: 25px; background: #f8f9fa; border-radius: 12px;">
+                                <div style="font-size: 48px; margin-bottom: 15px;">🔍</div>
+                                <h3 style="margin-bottom: 10px; color: #2c3e50;">智能搜索</h3>
+                                <p style="font-size: 14px; color: #7f8c8d; line-height: 1.6;">强大的搜索功能，快速找到你感兴趣的资讯和内容</p>
+                            </div>
+                            <div style="text-align: center; padding: 25px; background: #f8f9fa; border-radius: 12px;">
+                                <div style="font-size: 48px; margin-bottom: 15px;">👤</div>
+                                <h3 style="margin-bottom: 10px; color: #2c3e50;">个人中心</h3>
+                                <p style="font-size: 14px; color: #7f8c8d; line-height: 1.6;">管理你的文章、评论、收藏和好友，展示个人风采</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 平台数据 -->
+                <div class="card" style="margin-bottom: 30px;">
+                    <div class="card-body" style="padding: 30px;">
+                        <h2 style="margin-bottom: 25px; color: #1abc9c; font-size: 24px;">📊 平台数据</h2>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px; text-align: center;">
+                            <div style="padding: 20px;">
+                                <div style="font-size: 36px; font-weight: 600; color: #1abc9c; margin-bottom: 5px;">1000+</div>
+                                <div style="color: #7f8c8d; font-size: 14px;">优质文章</div>
+                            </div>
+                            <div style="padding: 20px;">
+                                <div style="font-size: 36px; font-weight: 600; color: #1abc9c; margin-bottom: 5px;">500+</div>
+                                <div style="color: #7f8c8d; font-size: 14px;">活跃用户</div>
+                            </div>
+                            <div style="padding: 20px;">
+                                <div style="font-size: 36px; font-weight: 600; color: #1abc9c; margin-bottom: 5px;">50+</div>
+                                <div style="color: #7f8c8d; font-size: 14px;">内容分类</div>
+                            </div>
+                            <div style="padding: 20px;">
+                                <div style="font-size: 36px; font-weight: 600; color: #1abc9c; margin-bottom: 5px;">10000+</div>
+                                <div style="color: #7f8c8d; font-size: 14px;">日访问量</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 发展历程 -->
+                <div class="card" style="margin-bottom: 30px;">
+                    <div class="card-body" style="padding: 30px;">
+                        <h2 style="margin-bottom: 25px; color: #1abc9c; font-size: 24px;">📈 发展历程</h2>
+                        <div style="position: relative; padding-left: 30px;">
+                            <div style="position: absolute; left: 8px; top: 0; bottom: 0; width: 2px; background: #e1e8ed;"></div>
+                            
+                            <div style="margin-bottom: 25px; position: relative;">
+                                <div style="position: absolute; left: -26px; width: 12px; height: 12px; background: #1abc9c; border-radius: 50%; border: 2px solid white; box-shadow: 0 0 0 2px #1abc9c;"></div>
+                                <div style="font-weight: 600; color: #1abc9c; margin-bottom: 5px;">2024年1月</div>
+                                <div style="color: #555;">源泉平台正式上线，提供资讯发布、评论互动等基础功能</div>
+                            </div>
+                            
+                            <div style="margin-bottom: 25px; position: relative;">
+                                <div style="position: absolute; left: -26px; width: 12px; height: 12px; background: #1abc9c; border-radius: 50%; border: 2px solid white; box-shadow: 0 0 0 2px #1abc9c;"></div>
+                                <div style="font-weight: 600; color: #1abc9c; margin-bottom: 5px;">2024年3月</div>
+                                <div style="color: #555;">新增好友社交功能，用户可以添加好友、建立社交圈子</div>
+                            </div>
+                            
+                            <div style="margin-bottom: 25px; position: relative;">
+                                <div style="position: absolute; left: -26px; width: 12px; height: 12px; background: #1abc9c; border-radius: 50%; border: 2px solid white; box-shadow: 0 0 0 2px #1abc9c;"></div>
+                                <div style="font-weight: 600; color: #1abc9c; margin-bottom: 5px;">2024年6月</div>
+                                <div style="color: #555;">推出内容收藏功能，完善个人中心，提供更完善的用户体验</div>
+                            </div>
+                            
+                            <div style="position: relative;">
+                                <div style="position: absolute; left: -26px; width: 12px; height: 12px; background: #3498db; border-radius: 50%; border: 2px solid white; box-shadow: 0 0 0 2px #3498db;"></div>
+                                <div style="font-weight: 600; color: #3498db; margin-bottom: 5px;">未来展望</div>
+                                <div style="color: #555;">持续优化产品体验，引入更多创新功能，打造更完善的知识分享社区</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 联系我们 -->
+                <div class="card">
+                    <div class="card-body" style="padding: 30px;">
+                        <h2 style="margin-bottom: 20px; color: #1abc9c; font-size: 24px;">📞 联系我们</h2>
+                        <p style="line-height: 1.8; margin-bottom: 20px; color: #555;">
+                            如果您有任何问题、建议或合作意向，欢迎通过以下方式联系我们：
+                        </p>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                            <div style="display: flex; align-items: center; gap: 15px; padding: 15px; background: #f8f9fa; border-radius: 8px;">
+                                <div style="font-size: 24px;">📧</div>
+                                <div>
+                                    <div style="font-weight: 500; color: #2c3e50;">电子邮箱</div>
+                                    <div style="color: #7f8c8d; font-size: 14px;">contact@yuanquan.com</div>
+                                </div>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 15px; padding: 15px; background: #f8f9fa; border-radius: 8px;">
+                                <div style="font-size: 24px;">📱</div>
+                                <div>
+                                    <div style="font-weight: 500; color: #2c3e50;">联系电话</div>
+                                    <div style="color: #7f8c8d; font-size: 14px;">400-123-4567</div>
+                                </div>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 15px; padding: 15px; background: #f8f9fa; border-radius: 8px;">
+                                <div style="font-size: 24px;">📍</div>
+                                <div>
+                                    <div style="font-weight: 500; color: #2c3e50;">公司地址</div>
+                                    <div style="color: #7f8c8d; font-size: 14px;">某某市某某区某某路123号</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>关于源泉</h4>
+                    <a href="about.html">平台介绍</a>
+                    <a href="about.html">联系我们</a>
+                    <a href="about.html">加入我们</a>
+                </div>
+                <div class="footer-section">
+                    <h4>帮助中心</h4>
+                    <a href="help.html">使用指南</a>
+                    <a href="help.html">常见问题</a>
+                    <a href="help.html">意见反馈</a>
+                </div>
+                <div class="footer-section">
+                    <h4>友情链接</h4>
+                    <a href="#">技术源泉</a>
+                    <a href="#">开发者社区</a>
+                    <a href="#">开源项目</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 源泉 - 知识分享与交流平台. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+        // 导航栏搜索
+        function handleNavSearch() {
+            const keyword = document.getElementById('navSearchInput').value.trim();
+            if (keyword) {
+                window.location.href = `articles.html?keyword=${encodeURIComponent(keyword)}`;
+            }
+        }
+    </script>
+</body>
+</html>

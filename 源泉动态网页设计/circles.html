@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>交流圈 - 源泉</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .circle-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .circle-card-item {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .circle-card-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+        }
+        .circle-card-cover {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+        }
+        .circle-card-body {
+            padding: 20px;
+        }
+        .circle-card-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #2c3e50;
+        }
+        .circle-card-desc {
+            font-size: 13px;
+            color: #7f8c8d;
+            margin-bottom: 15px;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+        .circle-card-stats {
+            display: flex;
+            gap: 20px;
+            font-size: 13px;
+            color: #7f8c8d;
+            margin-bottom: 15px;
+        }
+        .circle-card-footer {
+            display: flex;
+            gap: 10px;
+        }
+        .circle-card-footer .btn {
+            flex: 1;
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <span>源泉</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="articles.html">资讯中心</a></li>
+                <li><a href="circles.html" class="active">交流圈</a></li>
+                <li><a href="about.html">关于我们</a></li>
+            </ul>
+            <div class="nav-right">
+                <div class="search-box">
+                    <input type="text" placeholder="搜索圈子...">
+                    <button type="button">🔍</button>
+                </div>
+                <div class="user-menu">
+                    <a href="login.html" class="btn btn-outline btn-sm">登录</a>
+                    <a href="register.html" class="btn btn-primary btn-sm">注册</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主要内容 -->
+    <main class="main-content" style="padding: 30px 0;">
+        <div class="container">
+            <!-- 页面标题 -->
+            <div style="text-align: center; margin-bottom: 40px;">
+                <h1 style="font-size: 32px; margin-bottom: 10px;">交流圈</h1>
+                <p style="color: #7f8c8d;">加入感兴趣的圈子，与志同道合的朋友一起交流</p>
+            </div>
+
+            <!-- 筛选和创建 -->
+            <div class="card" style="margin-bottom: 30px;">
+                <div class="card-body">
+                    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;">
+                        <div class="category-list">
+                            <a href="circles.html" class="category-tag active">全部圈子</a>
+                            <a href="circles.html?type=tech" class="category-tag">技术交流</a>
+                            <a href="circles.html?type=career" class="category-tag">职场成长</a>
+                            <a href="circles.html?type=life" class="category-tag">生活兴趣</a>
+                            <a href="circles.html?type=my" class="category-tag">我的圈子</a>
+                        </div>
+                        <a href="create-circle.html" class="btn btn-primary btn-sm">+ 创建圈子</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 圈子列表 -->
+            <div class="circle-grid">
+                <div class="circle-card-item">
+                    <img src="img/circle-frontend.jpg" alt="圈子封面" class="circle-card-cover">
+                    <div class="circle-card-body">
+                        <h3 class="circle-card-title">前端技术交流</h3>
+                        <p class="circle-card-desc">分享前端开发经验，讨论HTML、CSS、JavaScript等前端技术，共同进步成长。</p>
+                        <div class="circle-card-stats">
+                            <span>👥 1,234 成员</span>
+                            <span>📝 568 动态</span>
+                        </div>
+                        <div class="circle-card-footer">
+                            <a href="circle-detail.html" class="btn btn-outline btn-sm">查看详情</a>
+                            <button class="btn btn-primary btn-sm" onclick="joinCircle(1)">+ 加入</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="circle-card-item">
+                    <img src="img/circle-php.jpg" alt="圈子封面" class="circle-card-cover">
+                    <div class="circle-card-body">
+                        <h3 class="circle-card-title">PHP开发者社区</h3>
+                        <p class="circle-card-desc">PHP是最好的语言！在这里讨论PHP开发技巧、框架使用、性能优化等话题。</p>
+                        <div class="circle-card-stats">
+                            <span>👥 892 成员</span>
+                            <span>📝 423 动态</span>
+                        </div>
+                        <div class="circle-card-footer">
+                            <a href="circle-detail.html" class="btn btn-outline btn-sm">查看详情</a>
+                            <button class="btn btn-primary btn-sm" onclick="joinCircle(2)">+ 加入</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="circle-card-item">
+                    <img src="img/circle-database.jpg" alt="圈子封面" class="circle-card-cover">
+                    <div class="circle-card-body">
+                        <h3 class="circle-card-title">数据库优化讨论</h3>
+                        <p class="circle-card-desc">深入探讨MySQL、Redis、MongoDB等数据库的使用技巧、性能优化方案。</p>
+                        <div class="circle-card-stats">
+                            <span>👥 567 成员</span>
+                            <span>📝 289 动态</span>
+                        </div>
+                        <div class="circle-card-footer">
+                            <a href="circle-detail.html" class="btn btn-outline btn-sm">查看详情</a>
+                            <button class="btn btn-primary btn-sm" onclick="joinCircle(3)">+ 加入</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="circle-card-item">
+                    <img src="img/circle-career.jpg" alt="圈子封面" class="circle-card-cover">
+                    <div class="circle-card-body">
+                        <h3 class="circle-card-title">职场成长之路</h3>
+                        <p class="circle-card-desc">分享职场经验、面试技巧、职业规划，帮助每一位开发者实现职业突破。</p>
+                        <div class="circle-card-stats">
+                            <span>👥 2,156 成员</span>
+                            <span>📝 1,234 动态</span>
+                        </div>
+                        <div class="circle-card-footer">
+                            <a href="circle-detail.html" class="btn btn-outline btn-sm">查看详情</a>
+                            <button class="btn btn-primary btn-sm" onclick="joinCircle(4)">+ 加入</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="circle-card-item">
+                    <img src="img/circle-devops.jpg" alt="圈子封面" class="circle-card-cover">
+                    <div class="circle-card-body">
+                        <h3 class="circle-card-title">DevOps实践</h3>
+                        <p class="circle-card-desc">讨论Docker、Kubernetes、CI/CD等DevOps工具和实践，提升开发运维效率。</p>
+                        <div class="circle-card-stats">
+                            <span>👥 789 成员</span>
+                            <span>📝 456 动态</span>
+                        </div>
+                        <div class="circle-card-footer">
+                            <a href="circle-detail.html" class="btn btn-outline btn-sm">查看详情</a>
+                            <button class="btn btn-primary btn-sm" onclick="joinCircle(5)">+ 加入</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="circle-card-item">
+                    <img src="img/circle-ai.jpg" alt="圈子封面" class="circle-card-cover">
+                    <div class="circle-card-body">
+                        <h3 class="circle-card-title">AI与机器学习</h3>
+                        <p class="circle-card-desc">探索人工智能和机器学习的奥秘，分享AI技术在实际项目中的应用案例。</p>
+                        <div class="circle-card-stats">
+                            <span>👥 1,567 成员</span>
+                            <span>📝 892 动态</span>
+                        </div>
+                        <div class="circle-card-footer">
+                            <a href="circle-detail.html" class="btn btn-outline btn-sm">查看详情</a>
+                            <button class="btn btn-primary btn-sm" onclick="joinCircle(6)">+ 加入</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 分页 -->
+            <div class="pagination">
+                <a href="#" class="disabled">上一页</a>
+                <span class="current">1</span>
+                <a href="#">2</a>
+                <a href="#">3</a>
+                <a href="#">下一页</a>
+            </div>
+        </div>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>关于源泉</h4>
+                    <a href="about.html">平台介绍</a>
+                    <a href="about.html">联系我们</a>
+                    <a href="about.html">加入我们</a>
+                </div>
+                <div class="footer-section">
+                    <h4>帮助中心</h4>
+                    <a href="help.html">使用指南</a>
+                    <a href="help.html">常见问题</a>
+                    <a href="help.html">意见反馈</a>
+                </div>
+                <div class="footer-section">
+                    <h4>友情链接</h4>
+                    <a href="#">技术博客</a>
+                    <a href="#">开发者社区</a>
+                    <a href="#">开源项目</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 源泉 - 知识分享与交流平台. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 回到顶部按钮 -->
+    <button class="back-to-top">↑</button>
+
+    <script src="js/main.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+        function joinCircle(circleId) {
+            showMessage('请先登录后再加入圈子', 'warning');
+        }
+    </script>
+</body>
+</html>

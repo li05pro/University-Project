@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>资讯中心 - 源泉</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* 加载状态样式 */
+        .loading-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #7f8c8d;
+        }
+        .loading-state .spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid #e1e8ed;
+            border-top-color: #1abc9c;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin: 0 auto 15px;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* 空状态样式 */
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #7f8c8d;
+        }
+        .empty-state .empty-icon {
+            font-size: 64px;
+            margin-bottom: 20px;
+        }
+        .empty-state h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        .empty-state p {
+            margin-bottom: 20px;
+        }
+        
+        /* 错误状态样式 */
+        .error-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #e74c3c;
+        }
+        .error-state .error-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+        .error-state h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #e74c3c;
+        }
+        .error-state p {
+            color: #7f8c8d;
+            margin-bottom: 20px;
+        }
+        
+        /* 分页信息样式 */
+        .pagination-info {
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 14px;
+            margin-top: 15px;
+        }
+        
+        /* 分页样式增强 */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        .pagination a,
+        .pagination span {
+            padding: 8px 14px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+        .pagination a {
+            background: #f8f9fa;
+            color: #2c3e50;
+            border: 1px solid #e1e8ed;
+        }
+        .pagination a:hover {
+            background: #1abc9c;
+            color: white;
+            border-color: #1abc9c;
+        }
+        .pagination span.current {
+            background: #1abc9c;
+            color: white;
+        }
+        .pagination span.disabled {
+            color: #bdc3c7;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <span>源泉</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="articles.html" class="active">资讯中心</a></li>
+                <li><a href="circles.html">交流圈</a></li>
+                <li><a href="about.html">关于我们</a></li>
+            </ul>
+            <div class="nav-right">
+                <div class="search-box">
+                    <input type="text" placeholder="搜索资讯...">
+                    <button type="button">🔍</button>
+                </div>
+                <div class="user-menu">
+                    <a href="login.html" class="btn btn-outline btn-sm">登录</a>
+                    <a href="register.html" class="btn btn-primary btn-sm">注册</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主要内容 -->
+    <main class="main-content" style="padding: 30px 0;">
+        <div class="container">
+            <div class="row">
+                <!-- 左侧内容区 -->
+                <div class="col-8 col-md-12">
+                    <!-- 筛选栏 -->
+                    <div class="card" style="margin-bottom: 20px;">
+                        <div class="card-body">
+                            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;">
+                                <div class="category-list">
+                                    <a href="articles.html" class="category-tag active">全部</a>
+                                    <a href="articles.html?category=1" class="category-tag">技术教程</a>
+                                    <a href="articles.html?category=2" class="category-tag">经验分享</a>
+                                    <a href="articles.html?category=3" class="category-tag">行业动态</a>
+                                    <a href="articles.html?category=4" class="category-tag">生活随笔</a>
+                                </div>
+                                <a href="publish.html" class="btn btn-primary btn-sm">✍️ 发布资讯</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 资讯列表 -->
+                    <div id="articleList">
+                        <div class="article-card">
+                            <img src="img/article-cover-1.jpg" alt="文章封面" class="article-cover">
+                            <div class="article-content">
+                                <a href="article-detail.html" class="article-title">如何构建高性能的Web应用程序：从架构到优化的完整指南</a>
+                                <p class="article-summary">本文将深入探讨构建高性能Web应用的关键技术和最佳实践，包括前端优化、后端架构设计、数据库优化等多个方面...</p>
+                                <div class="article-meta">
+                                    <span class="category">技术教程</span>
+                                    <span>👤 张三</span>
+                                    <span>📅 2024-01-15</span>
+                                    <span>👁 1,234</span>
+                                    <span>💬 56</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="article-card">
+                            <img src="img/article-cover-2.jpg" alt="文章封面" class="article-cover">
+                            <div class="article-content">
+                                <a href="article-detail.html" class="article-title">MySQL数据库性能优化实战：索引设计与查询优化</a>
+                                <p class="article-summary">数据库性能优化是Web应用开发中的重要环节。本文将详细介绍MySQL索引设计原则、查询优化技巧以及常见的性能瓶颈解决方案...</p>
+                                <div class="article-meta">
+                                    <span class="category">数据库</span>
+                                    <span>👤 李四</span>
+                                    <span>📅 2024-01-14</span>
+                                    <span>👁 892</span>
+                                    <span>💬 34</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="article-card">
+                            <img src="img/article-cover-3.jpg" alt="文章封面" class="article-cover">
+                            <div class="article-content">
+                                <a href="article-detail.html" class="article-title">职场新人的成长之路：从实习生到技术专家</a>
+                                <p class="article-summary">分享我从一名实习生成长为技术专家的心路历程，包括学习方法、项目经验、职业规划等方面的经验和建议...</p>
+                                <div class="article-meta">
+                                    <span class="category">职场经验</span>
+                                    <span>👤 王五</span>
+                                    <span>📅 2024-01-13</span>
+                                    <span>👁 2,156</span>
+                                    <span>💬 128</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="article-card">
+                            <img src="img/article-cover-4.jpg" alt="文章封面" class="article-cover">
+                            <div class="article-content">
+                                <a href="article-detail.html" class="article-title">Vue.js 3.0 新特性详解与实战应用</a>
+                                <p class="article-summary">Vue.js 3.0带来了许多激动人心的新特性，包括Composition API、更好的TypeScript支持、性能优化等。本文将详细介绍这些新特性...</p>
+                                <div class="article-meta">
+                                    <span class="category">前端开发</span>
+                                    <span>👤 赵六</span>
+                                    <span>📅 2024-01-12</span>
+                                    <span>👁 3,456</span>
+                                    <span>💬 89</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="article-card">
+                            <img src="img/article-cover-5.jpg" alt="文章封面" class="article-cover">
+                            <div class="article-content">
+                                <a href="article-detail.html" class="article-title">PHP 8.0 新功能介绍与升级指南</a>
+                                <p class="article-summary">PHP 8.0是PHP语言的一次重大更新，引入了JIT编译器、命名参数、联合类型等众多新特性。本文将详细介绍这些新功能...</p>
+                                <div class="article-meta">
+                                    <span class="category">后端开发</span>
+                                    <span>👤 钱七</span>
+                                    <span>📅 2024-01-11</span>
+                                    <span>👁 2,890</span>
+                                    <span>💬 67</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 分页 -->
+                    <div class="pagination">
+                        <a href="#" class="disabled">上一页</a>
+                        <span class="current">1</span>
+                        <a href="#">2</a>
+                        <a href="#">3</a>
+                        <a href="#">4</a>
+                        <a href="#">5</a>
+                        <a href="#">下一页</a>
+                    </div>
+                </div>
+
+                <!-- 右侧边栏 -->
+                <div class="col-4 col-md-12">
+                    <!-- 热门标签 -->
+                    <div class="sidebar">
+                        <h3 class="sidebar-title">热门标签</h3>
+                        <div class="category-list">
+                            <a href="#" class="category-tag">PHP</a>
+                            <a href="#" class="category-tag">JavaScript</a>
+                            <a href="#" class="category-tag">Vue.js</a>
+                            <a href="#" class="category-tag">MySQL</a>
+                            <a href="#" class="category-tag">Redis</a>
+                            <a href="#" class="category-tag">Docker</a>
+                            <a href="#" class="category-tag">Linux</a>
+                            <a href="#" class="category-tag">Git</a>
+                        </div>
+                    </div>
+
+                    <!-- 推荐作者 -->
+                    <div class="sidebar">
+                        <h3 class="sidebar-title">推荐作者</h3>
+                        <ul style="list-style: none;">
+                            <li style="padding: 10px 0; border-bottom: 1px solid #e1e8ed; display: flex; align-items: center; gap: 10px;">
+                                <img src="img/avatar-40-1.jpg" alt="头像" style="width: 40px; height: 40px; border-radius: 50%;">
+                                <div style="flex: 1;">
+                                    <p style="font-weight: 500;">张三</p>
+                                    <p style="font-size: 12px; color: #7f8c8d;">发布了 28 篇资讯</p>
+                                </div>
+                            </li>
+                            <li style="padding: 10px 0; border-bottom: 1px solid #e1e8ed; display: flex; align-items: center; gap: 10px;">
+                                <img src="img/avatar-40-2.jpg" alt="头像" style="width: 40px; height: 40px; border-radius: 50%;">
+                                <div style="flex: 1;">
+                                    <p style="font-weight: 500;">李四</p>
+                                    <p style="font-size: 12px; color: #7f8c8d;">发布了 24 篇资讯</p>
+                                </div>
+                            </li>
+                            <li style="padding: 10px 0; display: flex; align-items: center; gap: 10px;">
+                                <img src="img/avatar-40-3.jpg" alt="头像" style="width: 40px; height: 40px; border-radius: 50%;">
+                                <div style="flex: 1;">
+                                    <p style="font-weight: 500;">王五</p>
+                                    <p style="font-size: 12px; color: #7f8c8d;">发布了 19 篇资讯</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- 广告位 -->
+                    <div class="sidebar" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+                        <h3 style="font-size: 16px; margin-bottom: 10px;">加入源泉交流圈</h3>
+                        <p style="font-size: 13px; opacity: 0.9; margin-bottom: 15px;">与志同道合的开发者一起交流学习</p>
+                        <a href="circles.html" class="btn btn-sm" style="background: white; color: #764ba2;">立即加入</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>关于源泉</h4>
+                    <a href="about.html">平台介绍</a>
+                    <a href="about.html">联系我们</a>
+                    <a href="about.html">加入我们</a>
+                </div>
+                <div class="footer-section">
+                    <h4>帮助中心</h4>
+                    <a href="help.html">使用指南</a>
+                    <a href="help.html">常见问题</a>
+                    <a href="help.html">意见反馈</a>
+                </div>
+                <div class="footer-section">
+                    <h4>友情链接</h4>
+                    <a href="#">技术博客</a>
+                    <a href="#">开发者社区</a>
+                    <a href="#">开源项目</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 源泉 - 知识分享与交流平台. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 回到顶部按钮 -->
+    <button class="back-to-top">↑</button>
+
+    <script src="js/main.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/article.js"></script>
+</body>
+</html>

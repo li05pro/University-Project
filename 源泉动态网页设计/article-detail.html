@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文章详情 - 源泉</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .article-header {
+            background: white;
+            padding: 40px 0;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #e1e8ed;
+        }
+        .article-title-detail {
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+        .article-meta-detail {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            color: #7f8c8d;
+            flex-wrap: wrap;
+        }
+        .article-meta-detail .author {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .article-meta-detail .author img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .article-content-detail {
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            font-size: 16px;
+            line-height: 1.8;
+        }
+        .article-content-detail h2 {
+            font-size: 24px;
+            margin: 30px 0 15px;
+            color: #2c3e50;
+        }
+        .article-content-detail h3 {
+            font-size: 20px;
+            margin: 25px 0 12px;
+            color: #2c3e50;
+        }
+        .article-content-detail p {
+            margin-bottom: 15px;
+        }
+        .article-content-detail code {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+        .article-content-detail pre {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+        .article-content-detail pre code {
+            background: none;
+            padding: 0;
+            color: inherit;
+        }
+        .article-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 1px solid #e1e8ed;
+        }
+        .article-actions button {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border: 1px solid #e1e8ed;
+            background: white;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .article-actions button:hover {
+            border-color: #1abc9c;
+            color: #1abc9c;
+        }
+        .comment-section {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .comment-form {
+            margin-bottom: 30px;
+        }
+        .comment-form textarea {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #e1e8ed;
+            border-radius: 8px;
+            resize: vertical;
+            min-height: 100px;
+            margin-bottom: 15px;
+        }
+        .comment-list {
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <span>源泉</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="articles.html" class="active">资讯中心</a></li>
+                <li><a href="circles.html">交流圈</a></li>
+                <li><a href="about.html">关于我们</a></li>
+            </ul>
+            <div class="nav-right">
+                <div class="search-box">
+                    <input type="text" placeholder="搜索资讯...">
+                    <button type="button">🔍</button>
+                </div>
+                <div class="user-menu">
+                    <a href="login.html" class="btn btn-outline btn-sm">登录</a>
+                    <a href="register.html" class="btn btn-primary btn-sm">注册</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 文章头部 -->
+    <header class="article-header">
+        <div class="container">
+            <span class="category" style="display: inline-block; background: rgba(26, 188, 156, 0.1); color: #1abc9c; padding: 5px 15px; border-radius: 20px; margin-bottom: 15px; font-size: 14px;">技术教程</span>
+            <h1 class="article-title-detail">如何构建高性能的Web应用程序：从架构到优化的完整指南</h1>
+            <div class="article-meta-detail">
+                <div class="author">
+                    <img src="img/avatar-40-1.jpg" alt="作者头像">
+                    <div>
+                        <p style="font-weight: 500; color: #2c3e50;">张三</p>
+                        <p style="font-size: 12px;">发布于 2024-01-15</p>
+                    </div>
+                </div>
+                <span>👁 <span id="articleViewCount">1,234</span> 阅读</span>
+                <span>💬 <span id="articleCommentCount">0</span> 评论</span>
+                <span>⭐ 89 收藏</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- 主要内容 -->
+    <main class="main-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-8 col-md-12">
+                    <!-- 文章内容 -->
+                    <article class="article-content-detail">
+                        <p>在当今互联网时代，用户对Web应用的性能要求越来越高。一个高性能的Web应用不仅能够提供更好的用户体验，还能降低服务器成本，提高系统的可扩展性。本文将从架构设计、前端优化、后端优化和数据库优化等多个方面，详细介绍如何构建高性能的Web应用程序。</p>
+                        
+                        <h2>一、架构设计</h2>
+                        <p>良好的架构设计是构建高性能Web应用的基础。一个优秀的架构应该具备以下特点：</p>
+                        <ul style="margin: 15px 0; padding-left: 30px;">
+                            <li>模块化设计：将系统拆分成独立的模块，便于开发和维护</li>
+                            <li>分层架构：清晰的分层有助于职责分离和代码复用</li>
+                            <li>可扩展性：架构应该能够支持业务的快速发展</li>
+                            <li>高可用性：确保系统在故障情况下仍能提供服务</li>
+                        </ul>
+
+                        <h2>二、前端优化</h2>
+                        <p>前端优化是提升用户体验的关键。以下是一些常用的前端优化技术：</p>
+                        <h3>1. 资源压缩与合并</h3>
+                        <p>通过压缩CSS、JavaScript文件，可以减少文件大小，加快下载速度。同时，将多个文件合并成一个文件可以减少HTTP请求次数。</p>
+                        
+                        <h3>2. 图片优化</h3>
+                        <p>使用适当的图片格式（如WebP），并对图片进行压缩。对于大图，可以使用懒加载技术，只在需要时加载。</p>
+
+                        <h3>3. 缓存策略</h3>
+                        <p>合理利用浏览器缓存，可以显著减少重复请求。设置适当的Cache-Control头，让浏览器缓存静态资源。</p>
+
+                        <h2>三、后端优化</h2>
+                        <p>后端优化主要包括代码优化、缓存使用和异步处理等方面。</p>
+                        
+                        <h3>1. 代码优化</h3>
+                        <pre><code>// 优化前的代码
+function getUserData($userId) {
+    $users = fetchAllUsers(); // 获取所有用户
+    foreach ($users as $user) {
+        if ($user['id'] == $userId) {
+            return $user;
+        }
+    }
+    return null;
+}
+
+// 优化后的代码
+function getUserData($userId) {
+    return fetchUserById($userId); // 直接根据ID查询
+}</code></pre>
+
+                        <h3>2. 使用缓存</h3>
+                        <p>对于频繁访问但不经常变化的数据，可以使用Redis等缓存系统。这样可以大大减少数据库查询次数，提高响应速度。</p>
+
+                        <h2>四、数据库优化</h2>
+                        <p>数据库往往是Web应用的性能瓶颈。以下是一些数据库优化的建议：</p>
+                        <ul style="margin: 15px 0; padding-left: 30px;">
+                            <li>合理设计索引：为经常查询的字段添加索引</li>
+                            <li>优化查询语句：避免使用SELECT *，只查询需要的字段</li>
+                            <li>分表分库：当数据量过大时，考虑分表分库</li>
+                            <li>读写分离：将读操作和写操作分离到不同的数据库实例</li>
+                        </ul>
+
+                        <h2>总结</h2>
+                        <p>构建高性能的Web应用是一个系统工程，需要从架构、前端、后端和数据库等多个维度进行优化。希望本文的内容能够帮助你在实际项目中提升应用性能。</p>
+
+                        <!-- 文章操作 -->
+                        <div class="article-actions">
+                            <button id="favoriteBtn" onclick="toggleFavorite()">
+                                <span id="favoriteIcon">⭐</span>
+                                <span id="favoriteText">收藏</span>
+                            </button>
+                            <button onclick="shareArticle()">📤 分享</button>
+                            <button onclick="reportArticle()">🚨 举报</button>
+                        </div>
+                    </article>
+
+                    <!-- 评论区 -->
+                    <section class="comment-section">
+                        <h3 style="margin-bottom: 20px;">评论 (<span id="commentCount">0</span>)</h3>
+                        
+                        <!-- 评论表单 -->
+                        <div class="comment-form" id="commentFormContainer">
+                            <form id="commentForm">
+                                <textarea placeholder="发表你的评论..." id="commentContent" maxlength="1000" style="width: 100%; padding: 15px; border: 1px solid #e1e8ed; border-radius: 8px; resize: vertical; min-height: 100px; margin-bottom: 15px; font-family: inherit;"></textarea>
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <span style="font-size: 12px; color: #95a5a6;">最多1000字</span>
+                                    <button type="submit" class="btn btn-primary" id="commentSubmitBtn">发表评论</button>
+                                </div>
+                            </form>
+                        </div>
+                        
+                        <!-- 未登录提示 -->
+                        <div class="comment-form" id="commentLoginTip" style="display: none; text-align: center; padding: 30px; background: #f8f9fa; border-radius: 8px;">
+                            <p style="margin-bottom: 15px; color: #7f8c8d;">登录后才能发表评论</p>
+                            <button class="btn btn-primary" id="commentLoginBtn">立即登录</button>
+                        </div>
+
+                        <!-- 评论列表 -->
+                        <div class="comment-list" id="commentList">
+                            <div class="loading-text" style="text-align: center; padding: 40px; color: #7f8c8d;">加载中...</div>
+                        </div>
+                        
+                        <!-- 评论分页 -->
+                        <div class="pagination" id="commentPagination" style="margin-top: 20px; text-align: center;"></div>
+                    </section>
+                </div>
+
+                <!-- 侧边栏 -->
+                <div class="col-4 col-md-12">
+                    <!-- 作者信息 -->
+                    <div class="sidebar">
+                        <h3 class="sidebar-title">关于作者</h3>
+                        <div style="text-align: center; padding: 20px 0;">
+                            <a href="#" id="authorProfileLink" style="text-decoration: none;">
+                                <img src="img/avatar-1.jpg" alt="作者头像" style="width: 80px; height: 80px; border-radius: 50%; margin-bottom: 15px; cursor: pointer;" id="sidebarAuthorAvatar">
+                            </a>
+                            <h4 style="margin-bottom: 5px;">
+                                <a href="#" id="authorProfileLink2" style="color: #2c3e50; text-decoration: none;">
+                                    <span id="sidebarAuthorName">张三</span>
+                                </a>
+                            </h4>
+                            <p style="font-size: 13px; color: #7f8c8d; margin-bottom: 15px;" id="sidebarAuthorBio">全栈开发工程师 | 技术博主</p>
+                            <div style="display: flex; justify-content: center; gap: 20px; margin-bottom: 15px;">
+                                <div style="text-align: center;">
+                                    <p style="font-weight: 600; font-size: 18px;" id="sidebarArticleCount">28</p>
+                                    <p style="font-size: 12px; color: #7f8c8d;">文章</p>
+                                </div>
+                                <div style="text-align: center;">
+                                    <p style="font-weight: 600; font-size: 18px;" id="authorFriendCount">0</p>
+                                    <p style="font-size: 12px; color: #7f8c8d;">好友</p>
+                                </div>
+                                <div style="text-align: center;">
+                                    <p style="font-weight: 600; font-size: 18px;" id="sidebarLikeCount">5.6k</p>
+                                    <p style="font-size: 12px; color: #7f8c8d;">获赞</p>
+                                </div>
+                            </div>
+                            <button class="btn btn-primary btn-sm" style="width: 100%;" id="addFriendBtn" onclick="addFriend()">+ 加好友</button>
+                        </div>
+                    </div>
+
+                    <!-- 相关文章 -->
+                    <div class="sidebar">
+                        <h3 class="sidebar-title">相关文章</h3>
+                        <ul style="list-style: none;">
+                            <li style="padding: 12px 0; border-bottom: 1px solid #e1e8ed;">
+                                <a href="#" style="color: #2c3e50; font-size: 14px; display: block; margin-bottom: 5px;">Web应用性能监控与调优实战</a>
+                                <span style="font-size: 12px; color: #7f8c8d;">👁 892</span>
+                            </li>
+                            <li style="padding: 12px 0; border-bottom: 1px solid #e1e8ed;">
+                                <a href="#" style="color: #2c3e50; font-size: 14px; display: block; margin-bottom: 5px;">前端性能优化最佳实践总结</a>
+                                <span style="font-size: 12px; color: #7f8c8d;">👁 1,234</span>
+                            </li>
+                            <li style="padding: 12px 0;">
+                                <a href="#" style="color: #2c3e50; font-size: 14px; display: block; margin-bottom: 5px;">大型网站架构演进之路</a>
+                                <span style="font-size: 12px; color: #7f8c8d;">👁 2,156</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>关于源泉</h4>
+                    <a href="about.html">平台介绍</a>
+                    <a href="about.html">联系我们</a>
+                    <a href="about.html">加入我们</a>
+                </div>
+                <div class="footer-section">
+                    <h4>帮助中心</h4>
+                    <a href="help.html">使用指南</a>
+                    <a href="help.html">常见问题</a>
+                    <a href="help.html">意见反馈</a>
+                </div>
+                <div class="footer-section">
+                    <h4>友情链接</h4>
+                    <a href="#">技术博客</a>
+                    <a href="#">开发者社区</a>
+                    <a href="#">开源项目</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 源泉 - 知识分享与交流平台. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 回到顶部按钮 -->
+    <button class="back-to-top">↑</button>
+
+    <script src="js/main.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/article.js"></script>
+    <script>
+        // 页面标识，用于article.js识别
+        document.body.classList.add('article-detail-page');
+        
+        // 根据登录状态显示评论表单或登录提示
+        document.addEventListener('DOMContentLoaded', function() {
+            const commentFormContainer = document.getElementById('commentFormContainer');
+            const commentLoginTip = document.getElementById('commentLoginTip');
+
+            // 获取当前文章ID
+            const urlParams = new URLSearchParams(window.location.search);
+            currentArticleId = urlParams.get('id');
+
+            if (Auth.isLoggedIn()) {
+                if (commentFormContainer) commentFormContainer.style.display = 'block';
+                if (commentLoginTip) commentLoginTip.style.display = 'none';
+                // 检查收藏状态
+                checkFavoriteStatus();
+            } else {
+                if (commentFormContainer) commentFormContainer.style.display = 'none';
+                if (commentLoginTip) commentLoginTip.style.display = 'block';
+            }
+        });
+        
+        // 收藏状态
+        let isFavorite = false;
+        let currentArticleId = null;
+
+        // 检查收藏状态
+        async function checkFavoriteStatus() {
+            if (!Auth.isLoggedIn() || !currentArticleId) return;
+
+            try {
+                const response = await fetch(`php/article_api.php?action=check_favorite&article_id=${currentArticleId}`, {
+                    credentials: 'same-origin'
+                });
+                const result = await response.json();
+
+                if (result.success) {
+                    isFavorite = result.data.is_favorite;
+                    updateFavoriteButton();
+                }
+            } catch (error) {
+                console.error('检查收藏状态失败:', error);
+            }
+        }
+
+        // 更新收藏按钮显示
+        function updateFavoriteButton() {
+            const btn = document.getElementById('favoriteBtn');
+            const icon = document.getElementById('favoriteIcon');
+            const text = document.getElementById('favoriteText');
+
+            if (isFavorite) {
+                icon.textContent = '❤️';
+                text.textContent = '已收藏';
+                btn.style.background = '#e74c3c';
+                btn.style.color = 'white';
+            } else {
+                icon.textContent = '⭐';
+                text.textContent = '收藏';
+                btn.style.background = '';
+                btn.style.color = '';
+            }
+        }
+
+        // 切换收藏状态
+        async function toggleFavorite() {
+            if (!Auth.isLoggedIn()) {
+                showMessage('请先登录后再收藏', 'warning');
+                window.location.href = 'login.html?redirect=' + encodeURIComponent(window.location.href);
+                return;
+            }
+
+            if (!currentArticleId) {
+                showMessage('无法获取文章信息', 'error');
+                return;
+            }
+
+            const btn = document.getElementById('favoriteBtn');
+            btn.disabled = true;
+
+            try {
+                const formData = new FormData();
+                formData.append('article_id', currentArticleId);
+
+                const response = await fetch('php/article_api.php?action=toggle_favorite', {
+                    method: 'POST',
+                    body: formData,
+                    credentials: 'same-origin'
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    isFavorite = result.data.is_favorite;
+                    updateFavoriteButton();
+                    showMessage(result.message, 'success');
+                } else {
+                    showMessage(result.message || '操作失败', 'error');
+                }
+            } catch (error) {
+                console.error('收藏操作失败:', error);
+                showMessage('操作失败，请稍后重试', 'error');
+            } finally {
+                btn.disabled = false;
+            }
+        }
+        
+        function shareArticle() {
+            if (navigator.share) {
+                navigator.share({
+                    title: document.title,
+                    url: window.location.href
+                });
+            } else {
+                // 复制链接到剪贴板
+                navigator.clipboard.writeText(window.location.href);
+                showMessage('链接已复制到剪贴板', 'success');
+            }
+        }
+        
+        function reportArticle() {
+            if (!Auth.isLoggedIn()) {
+                showMessage('举报功能需要登录', 'warning');
+                return;
+            }
+            showMessage('举报功能开发中...', 'info');
+        }
+        
+        // 加好友功能
+        async function addFriend() {
+            if (!Auth.isLoggedIn()) {
+                showMessage('请先登录后再添加好友', 'warning');
+                window.location.href = 'login.html?redirect=' + encodeURIComponent(window.location.href);
+                return;
+            }
+            
+            // 使用 ArticleDetailManager 中保存的作者ID
+            const authorId = ArticleDetailManager.currentAuthorId;
+            
+            if (!authorId) {
+                showMessage('无法获取作者信息', 'error');
+                return;
+            }
+            
+            const btn = document.getElementById('addFriendBtn');
+            btn.disabled = true;
+            btn.textContent = '发送中...';
+            
+            try {
+                // 调用加好友API
+                const formData = new FormData();
+                formData.append('friend_id', authorId);
+                
+                const addResponse = await fetch('php/user.php?action=add_friend', {
+                    method: 'POST',
+                    body: formData,
+                    credentials: 'same-origin'
+                });
+                
+                const addResult = await addResponse.json();
+                
+                if (addResult.success) {
+                    showMessage('好友请求已发送', 'success');
+                    btn.textContent = '等待确认';
+                    btn.classList.remove('btn-primary');
+                    btn.classList.add('btn-outline');
+                } else {
+                    btn.disabled = false;
+                    btn.textContent = '+ 加好友';
+                    showMessage(addResult.message || '添加好友失败', 'error');
+                }
+            } catch (error) {
+                console.error('添加好友失败:', error);
+                btn.disabled = false;
+                btn.textContent = '+ 加好友';
+                showMessage('添加好友失败，请稍后重试', 'error');
+            }
+        }
+    </script>
+</body>
+</html>
